@@ -18,7 +18,7 @@ public class Magpie4
 	 */	
 	public String getGreeting()
 	{
-		return "Hello, let's talk.";
+		return "Hey, I'm Mr. Kaehms the coolest teacher in school, welcome to my classroom!";
 	}
 	
 	/**
@@ -33,19 +33,32 @@ public class Magpie4
 		String response = "";
 		if (statement.length() == 0)
 		{
-			response = "Say something, please.";
+			response = "Did you say something?";
 		}
 
 		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = "Why so negative?";
+			response = "Why not? I'm starting to think you aren't a Warriors fan...";
 		}
 		else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
 				|| findKeyword(statement, "sister") >= 0
 				|| findKeyword(statement, "brother") >= 0)
 		{
-			response = "Tell me more about your family.";
+			response = "Oh interesting; tell me more about your family.";
+		}
+
+		else if(findKeyword(statement, "hi") >=0
+				|| findKeyword(statement, "hey") >=0
+				|| findKeyword(statement, "hello")>=0
+				|| findKeyword(statement,"sup")>=0)
+		{
+			response = "Hey what's up, did you know that I love my Period 5 students the most.";
+		}
+
+		else if((findKeyword(statement, "you")>=0 && findKeyword(statement, "doing")>=0)||(findKeyword(statement, "your")>=0 && findKeyword(statement, "day")>=0))
+		{
+			response = "Great actually. I just checked up on the house I am building, and it is going well";
 		}
 
 		// Responses which require transformations
@@ -53,7 +66,7 @@ public class Magpie4
 		{
 			response = transformIWantToStatement(statement);
 		}
-
+		
 		else
 		{
 			// Look for a two word (you <something> me)
