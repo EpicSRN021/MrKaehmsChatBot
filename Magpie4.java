@@ -117,11 +117,70 @@ public class Magpie4
 			response = "Python is crazily developing. For you and the new generation, Python will be revolutionary";
 		}
 
-		else if(findKeyword(statement, "I") >= 0 || findKeyword(statement, "don't") >=0 || findKeyword(statement, "like")
+		else if(findKeyword(statement, "I") >= 0 && findKeyword(statement, "don't") >=0 && findKeyword(statement, "like")
 		>= 0  && findKeyword(statement, "to") >= 0) {
 			response = "Don't ever say never. Always keep on trying and try to do new things if you don't like others.";
 		}
+		
+		else if(findKeyword(statement, "variable")>=0)
+		{
+			response = "What makes Java different from Python is that you need to explicitly define the type of varibale you initialize. For example, a Bool, Int, String, and more";
+	
+		}
 
+		else if(findKeyword(statement, "loop")>=0)
+		{
+			response = "Java has two main kinds of loops we use: a for loop and a while loop. Both are used depending on the situation.";
+		}
+
+		else if(findKeyword(statement, "input")>=0)
+		{
+			response = "To get user input in Java, you need to use Scanner, just like this chatbot is using Scanner to collect your responses!";
+		}
+
+		else if((findKeyword(statement, "public")>=0)||(findKeyword(statement, "private")>=0)||(findKeyword(statement, "class")>=0))
+		{
+			response = "Java uses object oriented programming. For this, we need to organize our code in classes so we can initialize objects with it";
+		
+		}
+
+		else if(findKeyword(statement, "main")>=0)
+		{
+			response = "Always remember to have the statement, public void main(String[] args) in your Java code";
+		}
+		/**
+	 * Unique Chatbot Feature
+	 * Guessing Game
+	 */
+		else if ((findKeyword(statement, "extra")>=0)||findKeyword(statement, "credit")>=0||(findKeyword(statement, "points")>=0))
+		{	
+			response = "Ok here is an opportunity for extra credit. I am thinking of a whole number from 1-3. Guess the number correctly and you get extra credit.";
+		}
+		else if ((findKeyword(statement, "1")>=0)||(findKeyword(statement, "2")>=0)||(findKeyword(statement, "3")>=0))
+		{
+			int guessnum = 3;
+			double r = Math.random();
+			int guess = (int)(r * guessnum);
+			guess +=1;
+			int input = Integer.parseInt(statement);
+			if ((guess == input) && (findKeyword(statement, "1")>=0))
+			{
+				response = "You guessed the correct number to be 1! You get extra credit!";
+			}
+			else if ((guess == input) && (findKeyword(statement, "2")>=0))
+			{
+				response = "You guessed the correct number to be 2! You get extra credit!";
+			}
+			else if ((guess == input) && (findKeyword(statement, "3")>=0))
+			{
+				response = "You guessed the correct number to be 3! You get extra credit!";
+			}
+			else
+			{
+				response = "Your number is incorrect, maybe you can get extra credit next time. The correct number was " + guess;
+			}
+
+		}
 		// Responses which require transformations
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
@@ -265,14 +324,14 @@ public class Magpie4
 	 */
 	private String getRandomResponse()
 	{
-		final int NUMBER_OF_RESPONSES = 4;
+		final int NUMBER_OF_RESPONSES = 5;
 		double r = Math.random();
 		int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
 		String response = "";
 		
 		if (whichResponse == 0)
 		{
-			response = "Interesting, tell me more.";
+			response = "Yeah Yeah Yeah I heard about that";
 		}
 		else if (whichResponse == 1)
 		{
@@ -280,11 +339,15 @@ public class Magpie4
 		}
 		else if (whichResponse == 2)
 		{
-			response = "Do you really think so?";
+			response = "Do you really think so? Thats interesting.";
 		}
 		else if (whichResponse == 3)
 		{
-			response = "You don't say.";
+			response = "Yeah I can't believe it";
+		}
+		else if (whichResponse == 4)
+		{
+			response = "Can you say that again, I was busy thinking about the Warriors game from last weekend";
 		}
 
 		return response;
