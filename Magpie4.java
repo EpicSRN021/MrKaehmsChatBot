@@ -1,15 +1,5 @@
-/**
- * A program to carry on conversations with a human user.
- * This version:
- *<ul><li>
- * 		Uses advanced search for keywords 
- *</li><li>
- * 		Will transform statements as well as react to keywords
- *</li></ul>
- * @author Laurie White
- * @version April 2012
- *
- */
+import java.util.Random; 
+
 public class Magpie4
 {
 	/**
@@ -31,6 +21,7 @@ public class Magpie4
 	public String getResponse(String statement)
 	{
 		String response = "";
+		Random num = new Random();
 		if (statement.length() == 0)
 		{
 			response = "Did you say something?";
@@ -38,7 +29,7 @@ public class Magpie4
 
 		else if (findKeyword(statement, "no") >= 0)
 		{
-			response = "Why not? I'm starting to think you aren't a Warriors fan...";
+			response = "Why not? I'm starting to think you are mean";
 		}
 		else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
@@ -59,6 +50,76 @@ public class Magpie4
 		else if((findKeyword(statement, "you")>=0 && findKeyword(statement, "doing")>=0)||(findKeyword(statement, "your")>=0 && findKeyword(statement, "day")>=0))
 		{
 			response = "Great actually. I just checked up on the house I am building, and it is going well";
+		}
+
+		// joke responses
+		else if(findKeyword(statement, "joke") >=0) {
+			int rand = num.nextInt(4);
+			if (rand == 0) {
+				response = "Let me tell you a joke. Why did the programmer quit his job...because he didn't get arrays (a raise)";
+			}
+			else if (rand == 1) {
+				response = "Ok, here's a joke. What did the Java Class say to the C code...You've got no class";
+			}
+			else if (rand == 2) {
+				response = "Alright, here's a joke. Whats the object-oriented way to become wealthy...Inheritance";
+			}
+			else {
+				response = "Ok I thought of a funny joke. What is a Java programmers favorite musical note...C#";
+			}
+		}
+
+		else if (findKeyword(statement, "basketball") >= 0 || findKeyword(statement, "NBA") >=0) 
+			{
+				response = "I'm a huge warriors fan! Strength in Numbers, Dub Nation!";
+			}
+		
+		else if (findKeyword(statement, "sport") >= 0 || findKeyword(statement, "sports") >=0) 
+		{
+			response = "You watch sports? I love basketball! I used to teach basketball many years back!";
+		}
+
+		else if (findKeyword(statement, "hike") >= 0 || findKeyword(statement, "mountains") >=0 ||
+		 	findKeyword(statement, "walk") >=0) {
+				response = "I love walking or hiking on trails in the mountains. I love the environment!";
+
+			}
+		
+		else if (findKeyword(statement, "hobby") >= 0 || findKeyword(statement, "pastime") >=0 || findKeyword(statement, "like")
+		 >= 0 && findKeyword(statement, "like") >= 0 && findKeyword(statement, "to") >= 0 && findKeyword(statement, "do") >= 0) {
+			response = "In my free time, I love to hike and explore nature. It means a lot to me!";
+		 }
+		
+		
+	
+		
+		else if(findKeyword(statement, "nature") >=0 || findKeyword(statement, "environment") >=0 )  {
+			response = "I love the environment! Remember to always be safe and appreciate nature. Also, I have a club here in DHS. If you are ever interested, you should join it!";
+
+		}
+
+		else if(findKeyword(statement, "code") >=0 || findKeyword(statement, "coding") >=0 ) {
+			response = "Coding is my passion and is so interesting to me! I can help you anytime if you need it.";
+		}
+
+		else if(findKeyword(statement, "Java") >=0 )
+		{
+			response = "Java, what an interesting language.";
+		}
+
+		else if(findKeyword(statement, "AI") >=0 )
+		{
+			response = "AI is such an interesting thing, isnt it? I am truly fascinated by it and it's development to come.";
+		}
+
+		else if(findKeyword(statement, "Python") >=0 )
+		{
+			response = "Python is crazily developing. For you and the new generation, Python will be revolutionary";
+		}
+
+		else if(findKeyword(statement, "I") >= 0 || findKeyword(statement, "don't") >=0 || findKeyword(statement, "like")
+		>= 0  && findKeyword(statement, "to") >= 0) {
+			response = "Don't ever say never. Always keep on trying and try to do new things if you don't like others.";
 		}
 
 		// Responses which require transformations
