@@ -1,11 +1,172 @@
 import java.util.Random; 
-
+import java.util.Scanner;
 public class Magpie4
 {
 	/**
 	 * Get a default greeting 	
 	 * @return a greeting
 	 */	
+	private Boolean state0, state1, state2, state3, state4, state5, state6, state7, state8, state9;
+	int currState;
+	public Magpie4(){
+		state1=false;
+		state2=false;
+		state3=false;
+		state4=false;
+		state5=false;
+		state6=false;
+		state7=false;
+		state8=false;
+		state9 = false;
+		
+		state0=true; // initial state
+		currState=0;
+ 	}
+
+	
+
+	 public void stateMachine(String statement){
+			currState=getState(statement);
+			setState(currState, statement);
+		}
+	private int getState(String statement){
+		if (statement.length() == 0)
+		{
+			return 1;
+		}
+		else if(findKeyword(statement, "joke") >=0) 
+		{
+			return 2;
+		}
+		else if((findKeyword(statement, "variable")>=0) || (findKeyword(statement, "loop")>=0) || (findKeyword(statement, "input")>=0) || (findKeyword(statement, "public")>=0)||(findKeyword(statement, "private")>=0)||(findKeyword(statement, "class")>=0) || (findKeyword(statement, "main")>=0))
+		{
+			return 3;
+		}
+		else if ((findKeyword(statement, "basketball") >= 0 || findKeyword(statement, "NBA") >=0) 
+					|| (findKeyword(statement, "sport") >= 0 || findKeyword(statement, "sports") >=0) ||
+					(findKeyword(statement, "hike") >= 0 || findKeyword(statement, "mountains") >=0 ||
+		 			findKeyword(statement, "walk") >=0)|| (findKeyword(statement, "hobby") >= 0 || findKeyword(statement, "pastime") >=0 || findKeyword(statement, "like")
+					>= 0 && findKeyword(statement, "like") >= 0 && findKeyword(statement, "to") >= 0 && findKeyword(statement, "do") >= 0) ||
+					(findKeyword(statement, "nature") >=0 || findKeyword(statement, "environment") >=0 ) || (findKeyword(statement, "code") >=0 || findKeyword(statement, "coding") >=0 )
+					||(findKeyword(statement, "Java") >=0 ) || (findKeyword(statement, "AI") >=0 ) || (findKeyword(statement, "Python") >=0 ) || (findKeyword(statement, "I") >= 0 && findKeyword(statement, "don't") >=0 && findKeyword(statement, "like")
+					>= 0  && findKeyword(statement, "to") >= 0))
+		{
+			return 4;
+		}
+		else if (findKeyword(statement, "mother") >= 0
+				|| findKeyword(statement, "father") >= 0
+				|| findKeyword(statement, "sister") >= 0
+				|| findKeyword(statement, "brother") >= 0
+				||
+				findKeyword(statement, "hi") >=0
+				|| findKeyword(statement, "hey") >=0
+				|| findKeyword(statement, "hello")>=0
+				|| findKeyword(statement,"sup")>=0 || 
+				((findKeyword(statement, "you")>=0 && findKeyword(statement, "doing")>=0)||(findKeyword(statement, "your")>=0 && findKeyword(statement, "day")>=0)))
+		{
+			return 5;
+		}
+		else if (findKeyword(statement, "no")>=0)
+		{
+			return 6;
+		}
+		else if (((findKeyword(statement, "extra")>=0)||findKeyword(statement, "credit")>=0||(findKeyword(statement, "points")>=0) || (findKeyword(statement, "1")>=0)||(findKeyword(statement, "2")>=0)||(findKeyword(statement, "3")>=0)))
+		{
+			return 7;
+		}
+		else if ((findKeyword(statement, "I want to", 0) >= 0) || (findKeyword(statement, "you") >=0 && findKeyword(statement, "me")>=0))
+		{
+			return 8;
+		}
+		else {
+			return 9;
+		}
+
+		
+
+
+
+	}
+	private void setState(int currState, String statement){
+		  //reset all values.  Your state logic may vary
+		   state1=false;
+		   state2=false;
+		   state3=false;
+		   state4=false;
+		   
+		   switch(currState) {
+			 case 1:
+			   state1=true;
+			   if (state1)
+			   {
+				System.out.println("[Nothing State] " + getResponse(statement));
+			   }
+			   break;
+			  case 2:
+			   state2=true;
+			   if (state2)
+			   {
+				System.out.println("[Joke State] " + getResponse(statement));
+			   }
+			   break;
+			  case 3:
+			   state3=true;
+			   if (state3)
+			   {
+				System.out.println("[Curriculum State] " + getResponse(statement));
+			   }
+			   break;
+			 case 4:
+			   state4=true;
+			   if (state4)
+			   {
+				System.out.println("[Hobbies State] " + getResponse(statement));
+			   }
+			   break;
+			  case 5:
+			  state5=true;
+			  if (state5)
+			  {
+			   System.out.println("[Greeting State] " + getResponse(statement));
+			  }
+			   break;
+			 case 6:
+			 state6=true;
+			  if (state6)
+			  {
+			   System.out.println("[No/Negative State] " + getResponse(statement));
+			  }
+			  break;
+			 case 7:
+			 state7=true;
+			  if (state7)
+			  {
+			   System.out.println("[Extra Credit State] " + getResponse(statement));
+			  }
+			  break;
+			 case 8:
+			 state8=true;
+			  if (state8)
+			  {
+			   System.out.println("[Transformation State] " + getResponse(statement));
+			  }
+			  break;
+			 case 9:
+			 state9=true;
+			  if (state9)
+			  {
+			   System.out.println("[Filler State] " + getResponse(statement));
+			  }
+			  break;
+
+			 default:
+			 // add default behavior
+			 System.out.println("[Filler State] " + getResponse(statement));
+			}
+			
+		}
+
+
 	public String getGreeting()
 	{
 		return "Hey, I'm Mr. Kaehms the coolest teacher in school, welcome to my classroom!";

@@ -21,7 +21,7 @@ public class MagpieRunner4
 		
 		while (!statement.equals("Bye"))
 		{
-			System.out.println (maggie.getResponse(statement));
+			maggie.stateMachine(statement);
 			statement = in.nextLine();
 		}
 	}
